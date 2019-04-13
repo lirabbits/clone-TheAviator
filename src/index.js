@@ -24,12 +24,12 @@ class Aviator {
   }
 
   init() {
+    // シーン,カメラ,レンダラーを作成
     this.createScene();
     // ライトを作成
     this.createLight();
   }
 
-  // ウィンドウをリサイズしたときの表示サイズの更新
   handleWindowResize() {
     this.WIDTH = window.innerWidth;
     this.HEIGHT = window.innerHeight;
@@ -38,16 +38,19 @@ class Aviator {
     this.camera.updateProjectionMatrix();
   }
 
-  // シーン,カメラ,レンダラーを作成
   createScene() {
-    // シーン
+    /**
+     * シーン
+     */
     this.WIDTH = window.innerWidth;
     this.HEIGHT = window.innerHeight;
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0xf7d9aa, 100, 950);
 
-    // カメラ
+    /**
+     * カメラ
+     */
     const aspectRatio = this.WIDTH / this.HEIGHT;
     const fieldOfView = 60;
     const nearPlane = 1;
@@ -63,7 +66,9 @@ class Aviator {
     this.camera.position.z = 200;
     this.camera.position.y = 100;
 
-    // レンダラー
+    /**
+     * レンダラー
+     */
     this.renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true
@@ -76,7 +81,7 @@ class Aviator {
     const container = document.getElementById("app");
     container.appendChild(this.renderer.domElement);
 
-    // リサイズ時
+    // ウィンドウをリサイズしたときに表示サイズを更新
     window.addEventListener("resize", this.handleWindowResize, false);
   }
 
