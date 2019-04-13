@@ -18,10 +18,15 @@ class Aviator {
 
     this.renderer;
     this.camera;
+
+    this.hemisphereLight;
+    this.shadowLight;
   }
 
   init() {
     this.createScene();
+    // ライトを作成
+    this.createLight();
   }
 
   // ウィンドウをリサイズしたときの表示サイズの更新
@@ -73,6 +78,34 @@ class Aviator {
 
     // リサイズ時
     window.addEventListener("resize", this.handleWindowResize, false);
+  }
+
+  createLight() {
+    this.hemisphereLight = new THREE.HemisphereLight(0xaaaaaa, 0x000000, 0.9);
+
+    /**
+     * 影
+     */
+    this.shadowLight = new THREE.DirectionalLight(0xfffff, 0.9);
+    let { position, castShadow, shadow } = this.shadowLight;
+    position.set(150, 350, 350);
+    castShadow = true;
+
+    // 領域
+    shadow.camera.left = -400;
+    shadow.camera.right = 400;
+    shadow.camera.top = 400;
+    shadow.camera.bottom = -400;
+    shadow.camera.near = 1;
+    shadow.camera.far = 1000;
+
+    // 解像度
+    shadow.mapSize.width = 2048;
+    shadow.mapSize.height = 2048;
+
+    // 有効化
+    this.scene.add(this.hemisphereLight);
+    this.scene.add(this.shadowLight);
   }
 }
 
