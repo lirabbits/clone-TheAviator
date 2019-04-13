@@ -1,0 +1,21 @@
+{
+  "name": "the-aviator",
+  "version": "1.0.0",
+  "description": "clone TheAviator 3D Animation.",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "three": "0.103.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.2.0",
+    "parcel-bundler": "^1.6.1"
+  },
+  "keywords": [
+    "animation",
+    "three.js"
+  ]
+}
